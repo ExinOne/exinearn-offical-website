@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ios-download", {data:[{}],fetch:[],mutations:void 0});

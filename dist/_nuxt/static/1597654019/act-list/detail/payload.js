@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/act-list/detail", {data:[{}],fetch:[],mutations:void 0});

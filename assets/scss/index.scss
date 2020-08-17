@@ -1,0 +1,28 @@
+@import '~bootstrap/scss/functions.scss';
+@import './variables';
+@import '~bootstrap/scss/variables.scss';
+@import '~bootstrap/scss/mixins.scss';
+@import '~bootstrap/scss/grid.scss';
+@import '~bootstrap/scss/transitions.scss';
+@import '~bootstrap/scss/utilities.scss';
+@import './reset.scss';
+@import '~bootstrap/scss/navbar.scss';
+@import '~bootstrap/scss/buttons.scss';
+
+$root-sizes: (
+  xs: 10px,
+  sm: 12.5px,
+  md: 15px,
+  lg: 17.5px,
+  xl: 20px,
+);
+
+@if $enable-grid-classes {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    html {
+      @include media-breakpoint-up($breakpoint) {
+        font-size: map-get($map: $root-sizes, $key: $breakpoint);
+      }
+    }
+  }
+}
