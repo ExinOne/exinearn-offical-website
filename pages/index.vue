@@ -189,7 +189,7 @@ export default {
   padding-top: 14.4rem;
   padding-bottom: 3rem;
   margin-top: -4.4rem;
-  background: #fff top -37rem right -53.1rem / 113.4rem 113.4rem
+  background: #fff top -43.5rem right -50rem / 113.4rem 113.4rem
     url('~@/assets/images/home-bg.svg') no-repeat;
 
   .jumbotron-heading {
