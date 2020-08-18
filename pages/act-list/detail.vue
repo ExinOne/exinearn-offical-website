@@ -11,9 +11,32 @@
         </div>
         <h3 class="title">{{ title }}</h3>
         <p class="subtitle">水龙头团队 编辑于 {{ date }}</p>
-        <div class="content" v-html="des"></div>
+        <div class="content" v-html="content"></div>
       </b-container>
     </div>
+    <b-modal
+      v-model="isModelShow"
+      class="video-modal"
+      :centered="true"
+      :no-close-on-backdrop="true"
+      :hide-footer="true"
+      @hide="onModalHide"
+    >
+      <video
+        ref="video"
+        class="video-box"
+        :src="videoSrc"
+        controls="controls"
+        preload="metadata"
+        playsinline="playsinline"
+        player-fullscreen="true"
+        x5-video-play-type="h5"
+        x5-video-player-fullscreen="true"
+        type="video/mp4"
+        source
+        :poster="viewPoster"
+      ></video>
+    </b-modal>
   </div>
 </template>
 
@@ -27,6 +50,10 @@ export default {
       subtitle: '',
       des: '',
       date: '',
+      content: '',
+      isModelShow: false,
+      videoSrc: '',
+      viewPoster: '',
     };
   },
   mounted() {
@@ -39,10 +66,23 @@ export default {
         this.title = d.title;
         this.subtitle = d.subtitle;
         this.date = new Date(d.created_at * 1000).toLocaleDateString();
+        this.content = d.content;
       })
       .catch(err => {
-        console.log(err);
+        console.warn(err);
       });
+  },
+  methods: {
+    showVideoModal(item) {
+      this.videoSrc = item.src;
+      this.viewPoster = item.poster;
+      this.$nextTick(() => {
+        this.isModelShow = true;
+      });
+    },
+    onModalHide() {
+      this.$refs.video && this.$refs.video.pause();
+    },
   },
 };
 </script>

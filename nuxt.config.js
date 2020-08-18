@@ -14,7 +14,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '水龙头',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -58,7 +58,7 @@ export default {
     '@nuxtjs/proxy',
   ],
   bootstrapValue: {
-    components: ['BContainer', 'BNavBar', 'BRow', 'BCol', 'BButton'],
+    components: ['BContainer', 'BNavBar', 'BRow', 'BCol', 'BButton', 'BModal'],
   },
   bootstrapVue: {
     bootstrapCSS: false,
@@ -69,13 +69,17 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
+    baseUrl:
+      process.env.NODE_ENV === 'development'
+        ? 'https://app.exinearn.com'
+        : 'https://exinearntest.exincdn.com',
     proxy: true,
     prefix: '/api/v1',
     credentials: true,
   },
   proxy: {
     '/api/v1': {
-      target: 'https://exinearntest.exincdn.com',
+      target: process.env.PROXY_URL,
       changeOrigin: true,
     },
   },
@@ -87,5 +91,6 @@ export default {
     extractCSS: {
       allChunks: true,
     },
+    // optimization: {splitChunks: true},
   },
 };

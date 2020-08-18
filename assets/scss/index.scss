@@ -8,6 +8,7 @@
 @import './reset.scss';
 @import '~bootstrap/scss/navbar.scss';
 @import '~bootstrap/scss/buttons.scss';
+@import '~bootstrap/scss/modal.scss';
 
 $root-sizes: (
   xs: 10px,
@@ -25,4 +26,19 @@ $root-sizes: (
       }
     }
   }
+}
+
+.modal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  .close {
+    font-size: 2rem;
+  }
+}
+
+.modal-body {
+  text-align: center;
 }

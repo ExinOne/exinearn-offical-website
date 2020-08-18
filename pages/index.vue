@@ -11,7 +11,7 @@
         </b-row>
         <div class="jumbotron-btn-group">
           <button type="button" class="btn">
-            <span class="icon-wrapper">
+            <span class="icon-wrapper" @click="onModalShow">
               <svg class="icon-play">
                 <use xlink:href="#icon-play" />
               </svg>
@@ -45,12 +45,14 @@
       <b-container>
         <h2 class="main-body-heading">奖励方式</h2>
         <b-row :no-gutters="true" cols="2" cols-sm="3" cols-md="4" cols-lg="5">
-          <b-col v-for="i in 10" :key="i">
+          <b-col v-for="(item, i) in rewardsList" :key="i">
             <div class="reward-item">
               <svg class="reward-item-icon">
-                <use xlink:href="#icon-more" />
+                <use :xlink:href="item.icon" />
               </svg>
-              <span class="reward-item-text">更多</span>
+              <span class="reward-item-text">
+                {{ item.title }}<br />{{ item.subtitle }}
+              </span>
             </div>
           </b-col>
         </b-row>
@@ -75,27 +77,102 @@
         </b-row>
       </b-container>
     </div>
-    <div class="main-footer">
+    <div v-if="activityList.length > 0" class="main-footer">
       <b-container>
         <div class="main-footer-links">
           <div class="main-footer-title">水龙头资讯链接：</div>
           <div class="main-footer-link-list">
-            <nuxt-link to="/" class="link-item"
-              >有奖视频征集活动（已完结，可以观看）</nuxt-link
+            <nuxt-link
+              v-for="(item, index) in activityList"
+              :key="index"
+              :to="`/act-list/detail?id=${item.id}`"
+              class="link-item"
             >
-            <nuxt-link to="/" class="link-item">水龙头全国线下行活动</nuxt-link>
+              {{ item.title }}
+            </nuxt-link>
           </div>
         </div>
       </b-container>
     </div>
+    <b-modal
+      v-model="isModelShow"
+      class="video-modal"
+      :centered="true"
+      :no-close-on-backdrop="true"
+      :hide-footer="true"
+    >
+      <video
+        class="video-box"
+        src="https://outin-990fbd40ad1711eaba4100163e024c6a.oss-cn-shanghai.aliyuncs.com/sv/48bb5e7b-173ce28ded9/48bb5e7b-173ce28ded9.mp4?Expires=1599483734&OSSAccessKeyId=LTAIVVfYx6D0HeL2&Signature=SH%2F2E3ul0MkNvVisMFSfDJYgc%2F0%3D"
+        controls="controls"
+        preload="metadata"
+        playsinline="playsinline"
+        player-fullscreen="true"
+        x5-video-play-type="h5"
+        x5-video-player-fullscreen="true"
+        type="video/mp4"
+        source
+        poster="https://exinearn-public.oss-cn-shenzhen.aliyuncs.com/images/CqcIJgY4ceQ0nZts6EC6c2Euuxw09qDOGJ57DOdw.png"
+      ></video>
+    </b-modal>
   </div>
 </template>
 
 <script>
+/* eslint-disable prettier/prettier */
 export default {
+  data() {
+    return {
+      isModelShow: false,
+      activityList: [],
+      rewardsList: [
+        {
+          icon: '#icon-eleme',
+          title: '饿了么',
+          subtitle: '购物奖励',
+        },
+        {
+          icon: '#icon-taobao',
+          title: '淘宝',
+          subtitle: '购物奖励',
+        },
+        {
+          icon: '#icon-jingdong',
+          title: '京东',
+          subtitle: '购物奖励',
+        },
+        {
+          icon: '#icon-pinduoduo',
+          title: '拼多多',
+          subtitle: '购物奖励',
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.$axios
+      .get('/web/activities')
+      .then(data => {
+        const d = data.data.data;
+        if (Array.isArray(d)) {
+          this.activityList = d.map(item => {
+            return {
+              id: item.id,
+              title: item.title,
+            };
+          });
+        }
+      })
+      .catch(err => {
+        console.warn(err);
+      });
+  },
   methods: {
     goRoute(route) {
       this.$router.push(route);
+    },
+    onModalShow() {
+      this.isModelShow = true;
     },
   },
 };
@@ -171,6 +248,7 @@ export default {
       border-radius: 50%;
       box-shadow: 0 0.8rem 1.5rem 0 rgba(0, 0, 0, 0.16);
       color: #ff5a00;
+      background: #fff;
 
       .icon-play {
         width: 4rem;
@@ -266,5 +344,9 @@ export default {
     display: inline-block;
     margin: 0 1.5rem 1.5rem 0;
   }
+}
+
+.video-box {
+  width: 100%;
 }
 </style>
