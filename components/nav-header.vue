@@ -12,20 +12,27 @@
             <use xlink:href="#icon-navbar-toggle" />
           </svg>
         </b-navbar-toggle>
-        <b-collapse id="nav-collapse" is-nav @show="onShow" @hidden="onHidden">
+        <b-collapse
+          id="nav-collapse"
+          is-nav
+          @show="onCollapseShow"
+          @hidden="onCollapseHidden"
+        >
           <b-navbar-nav>
-            <li class="nav-item" align="center">
-              <nuxt-link to="/act-list" class="nav-link">
+            <li class="nav-item">
+              <nuxt-link to="/activities" class="nav-link" target="_self">
                 活动动态
               </nuxt-link>
             </li>
-            <li class="nav-item" align="center">
-              <nuxt-link to="https://exinone.com" class="nav-link">
-                品牌素材
+            <b-nav-item
+              href="https://shuilongtouapp.invisionapp.com/board/App-cke0078nv073o0zxwf12ai2rh"
+            >
+              品牌素材
+            </b-nav-item>
+            <li class="nav-item">
+              <nuxt-link to="/contact" class="nav-link" target="_self">
+                联系我们
               </nuxt-link>
-            </li>
-            <li class="nav-item" align="center">
-              <nuxt-link to="/contact" class="nav-link">联系我们</nuxt-link>
             </li>
           </b-navbar-nav>
         </b-collapse>
@@ -42,86 +49,184 @@ export default {
       hasBg: false,
     };
   },
+  computed: {
+    container() {
+      return this.$refs.container;
+    },
+  },
   mounted() {
-    window.addEventListener(
-      'scroll',
-      // eslint-disable-next-line prettier/prettier
-      () => {
-        if (window.scrollY >= 1) {
-          this.hasBg = true;
-        } else {
-          this.hasBg = false;
-        }
-      },
-      false,
-    );
+    const handler = () => {
+      if (window.scrollY >= 1) {
+        this.hasBg = true;
+      } else {
+        this.hasBg = false;
+      }
+    };
+    window.addEventListener('scroll', handler, false);
+    this.$once('hook:beforeDestory', () => {
+      window.removeEventListener('scroll', handler, false);
+    });
   },
   methods: {
-    onShow() {
-      if (!this.$refs.container.classList.contains('has-shadow')) {
-        this.$refs.container.classList.add('has-shadow');
+    onCollapseShow() {
+      if (!this.container.classList.contains('shadow')) {
+        this.container.classList.add('shadow');
       }
     },
-    onHidden() {
-      if (this.$refs.container.classList.contains('has-shadow')) {
-        this.$refs.container.classList.remove('has-shadow');
+    onCollapseHidden() {
+      if (this.container.classList.contains('shadow')) {
+        this.container.classList.remove('shadow');
       }
     },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~bootstrap/scss/functions.scss';
-@import '../assets/scss/variables';
+@import '../assets/scss/variable.scss';
 @import '~bootstrap/scss/mixins.scss';
-.header {
-  .icon-logo {
-    width: 8.7rem;
-    height: 2.4rem;
-  }
 
-  .icon-navbar-toggle {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
-    height: 4.4rem;
-  }
-
-  .navbar-toggler {
-    border: 0;
-    color: inherit;
-  }
+.navbar-nav {
+  display: flex;
+  flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
 
   .nav-link {
-    display: block;
+    padding-left: 0;
+    padding-right: 0;
     line-height: 2;
   }
+}
 
-  .nav-item {
-    @include media-breakpoint-down(xs) {
-      margin-top: 3rem;
+.navbar-brand {
+  display: inline-block;
+  padding-top: $navbar-brand-padding-y;
+  padding-bottom: $navbar-brand-padding-y;
+  margin-right: $navbar-brand-margin-x;
+}
 
-      &:last-child {
-        margin-bottom: 3rem;
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.navbar-expand {
+  &-sm {
+    @include media-breakpoint-up(sm) {
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+
+      .navbar-collapse {
+        display: flex !important; // stylelint-disable-line declaration-no-important
+        flex-basis: auto;
+      }
+
+      .navbar-nav {
+        flex-direction: row;
+
+        .dropdown-menu {
+          position: absolute;
+        }
+
+        .nav-link {
+          padding-right: $navbar-nav-link-padding-x;
+          padding-left: $navbar-nav-link-padding-x;
+        }
+      }
+
+      .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+      }
+
+      .navbar-toggler {
+        display: none;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .navbar-nav {
+        text-align: center;
+        .nav-item {
+          margin-top: 3rem;
+
+          &:last-child {
+            margin-bottom: 3rem;
+          }
+        }
       }
     }
   }
+}
 
-  & > .container-fluid {
-    background: transparent;
-    transition: all 0.2s linear;
-    @include media-breakpoint-down(xs) {
-      background: $white;
-
-      &.has-shadow {
-        box-shadow: 0 0.8rem 1.5rem 0 rgba(0, 0, 0, 0.16);
+.navbar-light {
+  .navbar-nav {
+    .nav-link {
+      color: $navbar-light-color;
+      @include hover-focus() {
+        color: $navbar-light-hover-color;
       }
+    }
+
+    .nav-link.active {
+      color: $navbar-light-active-color;
+    }
+  }
+
+  .navbar-toggler {
+    color: $navbar-light-color;
+  }
+}
+
+.icon-logo {
+  color: $dark;
+  width: 8.7rem;
+  height: 2.4rem;
+}
+
+.icon-navbar-toggle {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.header > .container-fluid {
+  position: relative;
+  background: transparent;
+  transition: box-shadow 0.3s linear;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  @include media-breakpoint-up(sm) {
+    &.bg-white:before {
+      opacity: 1;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    background: $white;
+
+    &.shadow {
+      box-shadow: 0 0.8rem 1.5rem 0 rgba(0, 0, 0, 0.16);
     }
   }
 }

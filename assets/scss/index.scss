@@ -1,22 +1,12 @@
+@import './reset.scss';
 @import '~bootstrap/scss/functions.scss';
-@import './variables';
-@import '~bootstrap/scss/variables.scss';
+@import './variable.scss';
 @import '~bootstrap/scss/mixins.scss';
 @import '~bootstrap/scss/grid.scss';
 @import '~bootstrap/scss/transitions.scss';
-@import '~bootstrap/scss/utilities.scss';
-@import './reset.scss';
-@import '~bootstrap/scss/navbar.scss';
-@import '~bootstrap/scss/buttons.scss';
+@import '~bootstrap/scss/utilities/position.scss';
 @import '~bootstrap/scss/modal.scss';
-
-$root-sizes: (
-  xs: 10px,
-  sm: 12.5px,
-  md: 15px,
-  lg: 17.5px,
-  xl: 20px,
-);
+@import '~bootstrap/scss/breadcrumb.scss';
 
 @if $enable-grid-classes {
   @each $breakpoint in map-keys($grid-breakpoints) {
@@ -41,4 +31,8 @@ $root-sizes: (
 
 .modal-body {
   text-align: center;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '>'!important;
 }

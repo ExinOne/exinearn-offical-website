@@ -2,11 +2,7 @@
   <div class="bg-gray">
     <div class="download-wrapper">
       <b-container>
-        <div class="breadcrumb">
-          <span>首页</span>
-          >
-          <span>iOS 下载</span>
-        </div>
+        <b-breadcrumb :items="breadcrumbItems" />
         <b-row no-gutters cols="1" cols-sm="2" align-h="center">
           <b-col>
             <div class="img-box">
@@ -29,6 +25,25 @@
   </div>
 </template>
 
+<script>
+export default {
+  computed: {
+    breadcrumbItems() {
+      return [
+        {
+          text: '首页',
+          href: '/',
+        },
+        {
+          text: 'iOS 下载',
+          href: '#',
+        },
+      ];
+    },
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .bg-gray {
   background: #f2f2f2;
@@ -43,7 +58,7 @@
 }
 
 .img-box {
-  margin: 3rem auto 0;
+  margin: 0 auto 3rem;
   width: 80%;
   text-align: center;
   .img {
@@ -59,7 +74,7 @@
 }
 
 .qrcode-box {
-  margin: 3rem auto 0;
+  margin: 0 auto 3rem;
   width: 80%;
   padding: 3rem 5.3rem;
   text-align: center;

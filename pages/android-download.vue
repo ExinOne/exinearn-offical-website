@@ -2,16 +2,12 @@
   <div class="bg-gray">
     <div class="download-wrapper">
       <b-container>
-        <div class="breadcrumb">
-          <span>首页</span>
-          >
-          <span>Android 下载</span>
-        </div>
+        <b-breadcrumb :items="breadcrumbItems" />
         <b-row no-gutters cols="1" cols-sm="2" align-h="center">
           <b-col>
             <div class="img-box">
               <img
-                src="@/assets/images/ios-download-banner.svg"
+                src="@/assets/images/android-download-banner.svg"
                 alt=""
                 class="img"
               />
@@ -28,6 +24,25 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    breadcrumbItems() {
+      return [
+        {
+          text: '首页',
+          href: '/',
+        },
+        {
+          text: 'Android 下载',
+          href: '#',
+        },
+      ];
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .bg-gray {

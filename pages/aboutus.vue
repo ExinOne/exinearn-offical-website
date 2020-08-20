@@ -1,15 +1,15 @@
 <template>
-  <div class="bg-gray">
+  <div>
     <div class="about-wrapper">
       <b-container>
         <b-row cols="1" no-gutters>
-          <div class="breadcrumb">
-            <span>首页</span>
-            >
-            <span>关于我们</span>
-          </div>
-          <h3 class="title">关于我们</h3>
-          <p class="subtitle">水龙头团队 编辑于 2020/08/10</p>
+          <b-breadcrumb :items="breadcrumbItems" />
+          <h3 class="title">
+            关于我们
+          </h3>
+          <p class="subtitle">
+            水龙头团队 编辑于 2020/08/10
+          </p>
           <p class="para">
             我们是一个专业的区块链技术团队，我们相信比特币终将成为全球价值存储网络，我们创办水龙头
             App 是希望全球数十亿人都拥有和使用比特币。
@@ -21,18 +21,35 @@
             App
             帮助用户可以轻松的赚取自己的第一笔比特币，并且可以轻松的保存、转让比特币。
           </p>
-          <p class="para">希望您能加入我们，一起创造未来，改变世界。</p>
+          <p class="para">
+            希望您能加入我们，一起创造未来，改变世界。
+          </p>
         </b-row>
       </b-container>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.bg-gray {
-  background: #f2f2f2;
-}
+<script>
+export default {
+  computed: {
+    breadcrumbItems() {
+      return [
+        {
+          text: '首页',
+          href: '/',
+        },
+        {
+          text: '关于我们',
+          href: '#',
+        },
+      ];
+    },
+  },
+};
+</script>
 
+<style lang="scss" scoped>
 .about-wrapper {
   padding: 3rem 0 6rem;
 }

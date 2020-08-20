@@ -69,10 +69,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseUrl:
-      process.env.NODE_ENV === 'development'
-        ? 'https://app.exinearn.com'
-        : 'https://exinearntest.exincdn.com',
+    baseUrl: 'https://app.exinearn.com',
     proxy: true,
     prefix: '/api/v1',
     credentials: true,
