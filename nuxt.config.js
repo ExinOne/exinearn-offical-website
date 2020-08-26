@@ -1,4 +1,3 @@
-import axios from 'axios';
 export default {
   /*
    ** Nuxt rendering mode
@@ -87,6 +86,12 @@ export default {
         ? '/api/v1'
         : 'https://app.exinearn.com/api/v1',
     credentials: false,
+    headers: {
+      common: {
+        accept: 'application/prs.exin.v1+json',
+        'x-app-refer': 'exin',
+      },
+    },
   },
   proxy: {
     '/api/v1': {
