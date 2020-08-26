@@ -85,12 +85,13 @@ export default {
       process.env.NODE_ENV !== 'production'
         ? '/api/v1'
         : 'https://app.exinearn.com/api/v1',
-    credentials: false,
+    credentials: true,
     headers: {
       common: {
         accept: 'application/prs.exin.v1+json',
         'x-app-refer': 'exin',
       },
+      Origin: 'https://shuilongtouapp.com',
     },
   },
   proxy: {
