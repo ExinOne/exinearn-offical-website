@@ -438,7 +438,7 @@ export default {
   padding: 3rem;
   background: #fff;
   line-height: 1.5;
-  height: 100%;
+  height: calc(100% - 1.5rem);
 
   .person-item-avatar {
     width: 5rem;
