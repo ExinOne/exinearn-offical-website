@@ -86,7 +86,7 @@ export default {
       process.env.NODE_ENV !== 'production'
         ? '/api/v1'
         : 'https://app.exinearn.com/api/v1',
-    credentials: true,
+    credentials: false,
   },
   proxy: {
     '/api/v1': {
