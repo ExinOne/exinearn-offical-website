@@ -206,14 +206,14 @@ export default {
           subtitle: '购物奖励',
         },
         {
-          icon: '#icon-jingdong',
-          title: '京东',
+          icon: '#icon-pinduoduo',
+          title: '拼多多',
           subtitle: '购物奖励',
         },
         {
           icon: '#icon-vipshop',
-          title: '京东',
-          subtitle: '唯品会',
+          title: '唯品会',
+          subtitle: '购物奖励',
         },
         {
           icon: '#icon-eleme',
