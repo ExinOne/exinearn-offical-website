@@ -56,7 +56,7 @@
               />
             </template>
             <h3 class="media-title">
-              获币圈知名大佬投资，吃喝玩乐都能获得比特币奖励
+              李笑来投资的比特币奖励平台
             </h3>
             <p>
               水龙头 App
@@ -147,14 +147,14 @@
             水龙头资讯链接：
           </div>
           <div class="main-footer-link-list">
-            <nuxt-link
+            <span
               v-for="(item, index) in activityList"
               :key="index"
-              :to="`/activityDetail?id=${item.id}`"
               class="link-item"
+              @click="goDetail(item)"
             >
               {{ item.title }}
-            </nuxt-link>
+            </span>
           </div>
         </div>
       </b-container>
@@ -253,6 +253,8 @@ export default {
             return {
               id: item.id,
               title: item.title,
+              type: item.type,
+              url: item.url,
             };
           });
         }
@@ -265,6 +267,13 @@ export default {
   methods: {
     goRoute(route) {
       this.$router.push(route);
+    },
+    goDetail(item) {
+      if (item.type === 'url') {
+        window.open(item.url, '_blank');
+      } else {
+        this.$router.push(`/activities/${item.id}`);
+      }
     },
     onModalShow() {
       this.isModelShow = true;
@@ -463,7 +472,7 @@ export default {
   }
 }
 .main-footer {
-  padding: 10rem 0 4rem;
+  padding: 4rem 0;
 
   .main-footer-links {
     display: flex;
@@ -477,11 +486,18 @@ export default {
   .main-footer-link-list {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .link-item {
     display: inline-block;
     margin: 0 1.5rem 1.5rem 0;
+    color: #ff5a00;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 

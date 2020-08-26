@@ -47,7 +47,7 @@ export default {
     },
   },
   mounted() {
-    const id = this.$route.query.id;
+    const id = this.$route.params.id;
     this.$axios
       .get(`/web/activity/${id}`)
       .then((data) => {

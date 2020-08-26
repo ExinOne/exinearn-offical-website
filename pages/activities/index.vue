@@ -5,7 +5,7 @@
         <b-breadcrumb :items="breadcrumbItems" />
         <b-row cols="1" cols-sm="2" cols-lg="3">
           <b-col v-for="(activity, i) in activityList" :key="i">
-            <div class="activity-item" @click="goDetail(activity.id)">
+            <div class="activity-item" @click="goDetail(activity)">
               <img class="activity-banner" :src="activity.imgUrl" />
               <div class="activity-title">
                 {{ activity.title }}
@@ -56,6 +56,8 @@ export default {
               title: item.title,
               status: item.subtitle,
               des: item.description,
+              type: item.type,
+              url: item.url,
             };
           });
         }
@@ -66,8 +68,12 @@ export default {
       });
   },
   methods: {
-    goDetail(id) {
-      this.$router.push(`/activityDetail?id=${id}`);
+    goDetail(activity) {
+      if (activity.type === 'url') {
+        window.open(activity.url, '_blank');
+      } else {
+        this.$router.push(`/activities/${activity.id}`);
+      }
     },
   },
 };
@@ -82,6 +88,7 @@ export default {
   margin: 0 1.5rem 1.5rem 0;
   padding: 3rem;
   background: #fff;
+  height: calc(100% - 1.5rem);
 
   .activity-banner {
     width: 100%;

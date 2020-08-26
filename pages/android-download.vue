@@ -63,6 +63,7 @@ export default {
   text-align: center;
   .img {
     width: 100%;
+    height: auto;
   }
 }
 
@@ -84,8 +85,8 @@ export default {
   .img {
     display: block;
     margin: 0 auto;
-    width: 15rem;
-    height: 15rem;
+    width: 100%;
+    height: auto;
   }
 
   .text {

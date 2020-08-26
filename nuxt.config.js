@@ -1,3 +1,4 @@
+import axios from 'axios';
 export default {
   /*
    ** Nuxt rendering mode
@@ -14,14 +15,24 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: '水龙头',
+    title: '比特币奖励平台-水龙头App',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'viewport',
+        content:
+          'width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0,viewport-fit=cover',
+      },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content:
+          '水龙头App是一个比特币奖励平台，通过水龙头App可以获得免费的比特币奖励，同时可也可以学习比特币、区块链知识。',
+      },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content: '比特币，水龙头App，返利，奖励',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -93,4 +104,11 @@ export default {
     },
     // optimization: {splitChunks: true},
   },
+  router: {
+    linkActiveClass: 'active',
+    linkExactActiveClass: '',
+  },
+  // generate: {
+  //   routes: [''],
+  // },
 };

@@ -84,8 +84,8 @@ export default {
   .img {
     display: block;
     margin: 0 auto;
-    width: 15rem;
-    height: 15rem;
+    width: 100%;
+    height: auto;
   }
 
   .text {

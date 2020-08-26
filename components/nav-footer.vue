@@ -15,6 +15,15 @@
           </li>
         </b-navbar-nav>
       </b-navbar>
+      <div class="copyright">
+        <span>
+          Copyright © 2020 水龙头App. All Rights Reserved.
+          深圳大眼鱼科技有限公司 版权所有
+          <a href="https://beian.miit.gov.cn/" target="_blank">
+            粤ICP备2020075053号-1
+          </a>
+        </span>
+      </div>
     </b-container>
   </footer>
 </template>
@@ -30,7 +39,7 @@
   right: 0;
   z-index: $zindex-fixed;
   background: $dark;
-  padding: 5rem 0;
+  padding: 5rem 0 3rem;
 }
 
 .navbar {
@@ -68,6 +77,20 @@
         color: $navbar-dark-hover-color;
       }
     }
+  }
+}
+
+.copyright {
+  margin-top: 2rem;
+  text-align: center;
+  color: #959595;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 0.8rem;
+  }
+
+  a {
+    display: inline-block;
   }
 }
 </style>
