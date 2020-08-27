@@ -91,7 +91,6 @@ export default {
         accept: 'application/prs.exin.v1+json',
         'x-app-refer': 'exin',
       },
-      Origin: 'https://shuilongtouapp.com',
     },
   },
   proxy: {
