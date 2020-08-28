@@ -1,0 +1,55 @@
+$white: #fff;
+$body-color: #2c2c2c;
+$navbar-padding-x: 0;
+$navbar-padding-y: 0;
+$navbar-toggler-padding-x: 0;
+$navbar-toggler-padding-y: 0;
+$navbar-toggler-font-size: 0;
+$navbar-brand-padding-y: 1rem;
+$navbar-brand-margin-x: 2rem;
+$navbar-brand-font-size: 0;
+$grid-gutter-width: 4.8rem;
+$navbar-light-brand-color: $body-color;
+$navbar-light-color: $body-color;
+$navbar-light-hover-color: #ff5a00;
+$navbar-light-active-color: #ff5a00;
+$navbar-dark-color: $white;
+$navbar-dark-hover-color: #ff5a00;
+$navbar-nav-link-padding-x: 1rem;
+$navbar-dark-color: $white;
+$dark: #2c2c2c;
+$btn-focus-box-shadow: none !important;
+$danger: #ff5a00;
+$dark: #2c2c2c;
+$modal-backdrop-bg: transparent;
+$modal-header-border-width: 0;
+$modal-inner-padding: 0;
+$breadcrumb-bg: transparent;
+$breadcrumb-padding-x: 0;
+$breadcrumb-padding-y: 0;
+$breadcrumb-margin-bottom: 3rem;
+$breadcrumb-border-radius: 0;
+$breadcrumb-active-color: $body-color;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1360px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1280px
+);
+
+$root-sizes: (
+  xs: 12px,
+  sm: 13px,
+  md: 14px,
+  lg: 15px,
+  xl: 16px,
+);
