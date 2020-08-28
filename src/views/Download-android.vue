@@ -15,7 +15,7 @@
           </b-col>
           <b-col class="qrcode-wrapper">
             <div class="qrcode-box">
-              <img src="@/images/qrcode.png" alt="" class="img" />
+              <img src="@/images/android-qrcode.png" alt="" class="img" />
               <span class="text">扫一扫，下载水龙头 App</span>
             </div>
           </b-col>
