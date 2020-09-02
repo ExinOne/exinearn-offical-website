@@ -164,7 +164,7 @@
     >
       <video
         class="video-box"
-        src="https://outin-990fbd40ad1711eaba4100163e024c6a.oss-cn-shanghai.aliyuncs.com/sv/48bb5e7b-173ce28ded9/48bb5e7b-173ce28ded9.mp4?Expires=1599483734&OSSAccessKeyId=LTAIVVfYx6D0HeL2&Signature=SH%2F2E3ul0MkNvVisMFSfDJYgc%2F0%3D"
+        src="@/media/guide.mp4"
         controls="controls"
         preload="metadata"
         playsinline="playsinline"
