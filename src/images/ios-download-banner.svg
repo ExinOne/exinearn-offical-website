@@ -434,7 +434,8 @@
                     </g>
                 </g>
                 <text id="一键开启定制计划" fill-rule="nonzero" font-family="SourceHanSansCN-Regular, Source Han Sans CN" font-size="12.9766892" font-weight="normal" fill="#000000">
-                    <tspan x="40.8765709" y="100.539155">TestFlight 版下载</tspan>
+                    <tspan x="40.8765709" y="100.539155">iOS 下载</tspan>
+                    <!-- <tspan x="40.8765709" y="100.539155">TestFlight 版下载</tspan> -->
                 </text>
                 <text id="超级搜索" fill-rule="nonzero" font-family="BDZYJT--GB1-0, BDZongYi-A001" font-size="38.9300675" font-weight="normal" fill="#000000">
                     <tspan x="2.22828562e-14" y="62.8998817">“</tspan>
